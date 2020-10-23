@@ -1,5 +1,16 @@
 import React from 'react';
+import { AppContext } from '../App/AppProvider';
 
 export default () => {
-  return <h1>Welcome To Cryptodash</h1>;
+  return (
+    <AppContext.Consumer>
+      {({ firstVisit }) =>
+        firstVisit ? (
+          <div>
+            Welcome to CryptoDash, please select your favorite coins to begin.
+          </div>
+        ) : null
+      }
+    </AppContext.Consumer>
+  );
 };
