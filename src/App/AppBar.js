@@ -4,15 +4,19 @@ import { AppContext } from './AppProvider';
 
 const Logo = styled.div`
   font-size: 1.5em;
+  margin-bottom: 1rem;
 `;
 const Bar = styled.div`
-  display: grid;
-  grid-template-columns: 180px auto 100px 100px;
+  @media (min-width: 440px) {
+    display: grid;
+    grid-template-columns: 155px auto 100px 100px;
+  }
   margin-bottom: 3rem;
 `;
 
 const ControlButtonElem = styled.div`
   cursor: pointer;
+  margin-bottom: 0.5rem;
   ${(props) =>
     props.active &&
     css`
