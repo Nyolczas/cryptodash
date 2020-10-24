@@ -24,8 +24,8 @@ const DeleteIcon = styled.div`
 const DeleteSvg = () => {
   return (
     <svg
-      width='1em'
-      height='1em'
+      width='0.9em'
+      height='0.9em'
       viewBox='0 0 16 16'
       className='bi bi-x-circle-fill'
       fill='currentColor'
