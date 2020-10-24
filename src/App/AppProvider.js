@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 const cc = require('cryptocompare');
 
@@ -13,6 +14,9 @@ export class AppProvider extends React.Component {
       favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
       ...this.savedSettings(),
       setPage: this.setPage,
+      addCoin: this.addCoin,
+      removeCoin: this.removeCoin,
+      isInFavorites: this.isInFavorites,
       confirmFavorites: this.confirmFavorites,
     };
   }
@@ -33,6 +37,13 @@ export class AppProvider extends React.Component {
       this.setState({ favorites: favorites });
     }
   };
+
+  removeCoin = (key) => {
+    let favorites = [...this.state.favorites];
+    this.setState({ favorites: _.pull(favorites, key) });
+  };
+
+  isInFavorites = (key) => _.includes(this.state.favorites, key);
 
   confirmFavorites = () => {
     this.setState({ firstVisit: false, page: 'Dashboard' });

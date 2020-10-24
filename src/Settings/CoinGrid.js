@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppContext } from '../App/AppProvider';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import CoinTile from './CoinTile';
 
 export const CoinGridStyled = styled.div`
