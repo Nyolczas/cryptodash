@@ -47,7 +47,12 @@ export class AppProvider extends React.Component {
 
   confirmFavorites = () => {
     this.setState({ firstVisit: false, page: 'Dashboard' });
-    localStorage.setItem('cryptoDash', JSON.stringify({ test: 'hello' }));
+    localStorage.setItem(
+      'cryptoDash',
+      JSON.stringify({
+        favorites: this.state.favorites,
+      })
+    );
   };
 
   savedSettings() {
@@ -55,7 +60,8 @@ export class AppProvider extends React.Component {
     if (!cryptoDashData) {
       return { page: 'Settings', firstVisit: true };
     }
-    return {};
+    let { favorites } = cryptoDashData;
+    return { favorites };
   }
   setPage = (page) => this.setState({ page });
 

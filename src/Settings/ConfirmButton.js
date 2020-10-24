@@ -16,6 +16,7 @@ const ConfirmButtonStyled = styled.div`
 export const CenterDiv = styled.div`
   display: grid;
   justify-content: center;
+  margin-bottom: 3rem;
 `;
 
 export default () => {
