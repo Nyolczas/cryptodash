@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../App/AppProvider';
+import { fontSizeLg, clrHigh, hoverHigh } from '../Shared/Styles';
 
 const ConfirmButtonStyled = styled.div`
   margin: 20px;
-  color: mediumAquamarine;
+  color: ${clrHigh};
   cursor: pointer;
+  ${fontSizeLg};
+  &:hover {
+    color: ${hoverHigh};
+  }
 `;
 
 export const CenterDiv = styled.div`
