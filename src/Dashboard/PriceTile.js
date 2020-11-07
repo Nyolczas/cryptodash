@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { SelectableTile } from '../Shared/Tile';
-import { fontSizeSm, fontSizeLg } from '../Shared/Styles';
+import { fontSizeSm, fontSizeLg, clrHigh } from '../Shared/Styles';
+import { AppContext } from '../App/AppProvider';
 
 const PriceTileStyled = styled(SelectableTile)`
   display: grid;
@@ -11,6 +12,12 @@ const PriceTileStyled = styled(SelectableTile)`
     props.compact &&
     css`
       ${fontSizeSm}
+    `}
+  ${(props) =>
+    props.currentFavorite &&
+    css`
+      box-shadow: 0px 0px 4px 2px ${clrHigh};
+      pointer-events: none;
     `}
 `;
 
@@ -31,9 +38,11 @@ const numberFormat = (number) => {
   return number.toFixed(2);
 };
 
-const PriceTile = ({ sym, data }) => {
+const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
   return (
-    <PriceTileStyled>
+    <PriceTileStyled
+      onClick={setCurrentFavorite}
+      currentFavorite={currentFavorite}>
       <div> {sym} </div>
       <JustifyRight>
         <ChangePct pct={data.CHANGEPCT24HOUR}>
@@ -48,5 +57,15 @@ const PriceTile = ({ sym, data }) => {
 export default ({ price, index }) => {
   let sym = Object.keys(price)[0];
   let data = price[sym]['USD'];
-  return <PriceTile sym={sym} data={data}></PriceTile>;
+  return (
+    <AppContext.Consumer>
+      {({ currentFavorite, setCurrentFavorite }) => (
+        <PriceTile
+          sym={sym}
+          data={data}
+          currentFavorite={currentFavorite === sym}
+          setCurrentFavorite={() => setCurrentFavorite(sym)}></PriceTile>
+      )}
+    </AppContext.Consumer>
+  );
 };
