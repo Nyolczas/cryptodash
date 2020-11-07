@@ -35,6 +35,7 @@ const TickerPrice = styled.div`
 `;
 
 const numberFormat = (number) => {
+  if (number === undefined) return 0;
   return number.toFixed(2);
 };
 
@@ -46,7 +47,7 @@ const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
       <div> {sym} </div>
       <JustifyRight>
         <ChangePct pct={data.CHANGEPCT24HOUR}>
-          {numberFormat(data.CHANGEPCT24HOUR)}
+          {numberFormat(data.CHANGEPCT24HOUR)}%
         </ChangePct>
       </JustifyRight>
       <TickerPrice> $ {numberFormat(data.PRICE)} </TickerPrice>
