@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Center = styled.div`
   display: flex;
@@ -7,12 +7,21 @@ export const Center = styled.div`
   justify-content: center;
   margin-bottom: 0.5rem;
 `;
-export default ({ coin, style }) => {
+
+const CoinImage = styled.img`
+  height: 3rem;
+  ${(props) =>
+    props.spotlight &&
+    css`
+      height: 12rem;
+    `}
+`;
+export default ({ coin, spotlight }) => {
   return (
     <Center>
-      <img
+      <CoinImage
+        spotlight={spotlight}
         alt={coin.CoinSymbol}
-        style={style || { height: '50px' }}
         src={`http://cryptocompare.com/${coin.ImageUrl}`}
       />
     </Center>
